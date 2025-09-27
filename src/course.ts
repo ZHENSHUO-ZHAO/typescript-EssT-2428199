@@ -39,7 +39,9 @@ class User {
   [x: string]: any;
   @observablePassword
   public password: string;
-  constructor(public name: string) {}
+  constructor(public name: string) {
+    delete this.password;
+  }
 }
 
 @BaseEntity
@@ -58,30 +60,30 @@ let ny = new City(123);
 
 // delete user1.password;
 // console.log(user1.__proto__);
-// user1.password = "aaa";
+user1.password = "aaa";
 // console.log(user1.password);
 
-function logger(
-  target: any,
-  propertyKey: string,
-  descriptor: PropertyDescriptor
-) {
-  const original = descriptor.value;
+// function logger(
+//   target: any,
+//   propertyKey: string,
+//   descriptor: PropertyDescriptor
+// ) {
+//   const original = descriptor.value;
 
-  descriptor.value = function (...args) {
-    console.log("params: ", ...args);
-    const result = original.call(this, ...args);
-    console.log("result: ", result);
-    return result;
-  };
-}
+//   descriptor.value = function (...args) {
+//     console.log("params: ", ...args);
+//     const result = original.call(this, ...args);
+//     console.log("result: ", result);
+//     return result;
+//   };
+// }
 
-class C {
-  @logger
-  add(x: number, y: number) {
-    return x + y;
-  }
-}
+// class C {
+//   @logger
+//   add(x: number, y: number) {
+//     return x + y;
+//   }
+// }
 
-const c = new C();
-c.add(1, 2);
+// const c = new C();
+// c.add(1, 2);

@@ -44,6 +44,7 @@ class User {
     password;
     constructor(name) {
         this.name = name;
+        delete this.password;
     }
 }
 __decorate([
@@ -69,27 +70,26 @@ let ny = new City(123);
 // console.log(user2.id);
 // delete user1.password;
 // console.log(user1.__proto__);
-// user1.password = "aaa";
+user1.password = "aaa";
 // console.log(user1.password);
-function logger(target, propertyKey, descriptor) {
-    const original = descriptor.value;
-    descriptor.value = function (...args) {
-        console.log("params: ", ...args);
-        const result = original.call(this, ...args);
-        console.log("result: ", result);
-        return result;
-    };
-}
-class C {
-    add(x, y) {
-        return x + y;
-    }
-}
-__decorate([
-    logger,
-    __metadata("design:type", Function),
-    __metadata("design:paramtypes", [Number, Number]),
-    __metadata("design:returntype", void 0)
-], C.prototype, "add", null);
-const c = new C();
-c.add(1, 2);
+// function logger(
+//   target: any,
+//   propertyKey: string,
+//   descriptor: PropertyDescriptor
+// ) {
+//   const original = descriptor.value;
+//   descriptor.value = function (...args) {
+//     console.log("params: ", ...args);
+//     const result = original.call(this, ...args);
+//     console.log("result: ", result);
+//     return result;
+//   };
+// }
+// class C {
+//   @logger
+//   add(x: number, y: number) {
+//     return x + y;
+//   }
+// }
+// const c = new C();
+// c.add(1, 2);
