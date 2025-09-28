@@ -2,7 +2,7 @@ function BaseEntity<T extends { new (...args: any[]): {} }>(ctr: T) {
   ctr.prototype.generateId = Math.random;
   ctr.prototype.createTime = () => new Date().toLocaleString("es-ES");
 
-  return class extends ctr {
+  return class SuperClass extends ctr {
     [x: string]: any;
     readonly id: number;
     readonly timeCreated: string;
@@ -34,9 +34,8 @@ function observablePassword(target: any, propertyKey: string) {
   });
 }
 
-// @BaseEntity
+@BaseEntity
 class User {
-  [x: string]: any;
   @observablePassword
   public password: string;
   constructor(public name: string) {
@@ -55,8 +54,8 @@ let user2 = new User("vvv");
 let ny = new City(123);
 //City and User classes has the id and created property ;)
 // console.log(ny.id);
-// console.log(user1.id);
-// console.log(user2.id);
+console.log(user1.id);
+console.log(user2.id);
 
 // delete user1.password;
 // console.log(user1.__proto__);

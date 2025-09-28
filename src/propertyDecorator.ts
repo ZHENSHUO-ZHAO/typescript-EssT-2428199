@@ -21,7 +21,6 @@ function observable(target: any, key: string): any {
 }
 
 class C {
-  [x: string]: any;
   @observable
   foo = -1;
 
